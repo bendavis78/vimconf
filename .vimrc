@@ -22,6 +22,7 @@ autocmd BufRead *.html      set filetype=htmldjango
 autocmd BufRead .bash*      set filetype=sh
 autocmd BufRead *.json      set filetype=javascript
 
+
 filetype plugin on
 
 " markup languages
@@ -67,6 +68,12 @@ map ,; :s/^/;/<CR>:noh<CR>
 map ,- :s/^/--/<CR>:noh<CR>
 
 map ,d <esc>oimport ipdb; ipdb.set_trace()<esc>:w<CR>
+map ,t :ConqueTermSplit bash<CR>
+map ,vt :ConqueTermVSplit bash<CR>
+map ,f :FF<CR>
+
+" Quickly close preview windows
+map ,c :pclose<CR>
 
 " Common Command Typos
 command! Q  quit    " converts ... :Q  => :q
@@ -79,11 +86,34 @@ command! WN wN      " converts ... :WN => :wN
 " misc. keymaps
 noremap <S-j> <C-f>
 noremap <S-k> <C-b>
-noremap <C-j> :join<CR>
+map ,j :join<CR>
+noremap <C-Space> <C-X><C-O><CR>
+
+noremap <C-h> :wincmd h<CR>
+noremap <C-j> :wincmd j<CR>
+noremap <C-k> :wincmd k<CR>
+noremap <C-l> :wincmd l<CR>
 
 autocmd BufRead * syntax on
 autocmd VimEnter !togglecaps off
 
-if exists("PIDA_EMBEDDED")
-  :colorscheme desert
-endif
+" Underline errors in red, hilight is too distracting
+highlight SpellBad ctermbg=none ctermfg=red cterm=underline,bold gui=undercurl
+
+" Better Pmenu
+highlight Pmenu term=NONE cterm=NONE ctermfg=7 ctermbg=5 gui=NONE guifg=White guibg=Magenta
+highlight PmenuSel term=NONE cterm=NONE ctermfg=0 ctermbg=7 gui=NONE guifg=Black guibg=White
+highlight PmenuSbar term=NONE cterm=NONE ctermfg=7 ctermbg=0 gui=NONE guifg=White guibg=Black
+highlight PmenuThumb term=NONE cterm=NONE ctermfg=0 ctermbg=7 gui=NONE guifg=Black guibg=White
+
+" Ctrl+Space omnicompletion
+inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
+\ "\<lt>C-n>" :
+\ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
+\ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
+\ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+imap <C-@> <C-Space>
+
+
+" 256 colors
+set t_Co=256
