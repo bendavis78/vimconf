@@ -116,4 +116,7 @@ imap <C-@> <C-Space>
 
 
 " 256 colors
-set t_Co=256
+"set t_Co=256
+
+" Save using sudo
+command! -bar -nargs=0 SudoW :silent exe "write !sudo tee % >/dev/null" |silent edit!
