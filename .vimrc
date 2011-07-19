@@ -18,9 +18,11 @@ if &t_Co > 2 || has("gui_running")
 syntax on
 endif
 
+" set filetypes based on extension
 autocmd BufRead *.html      set filetype=htmldjango
 autocmd BufRead .bash*      set filetype=sh
 autocmd BufRead *.json      set filetype=javascript
+autocmd BufRead *.less      set filetype=less
 
 
 filetype plugin on
@@ -29,12 +31,14 @@ filetype plugin on
 autocmd FileType xml        set ts=2 sw=2 expandtab autoindent
 autocmd FileType xslt       set ts=2 sw=2 expandtab autoindent
 autocmd FileType htmldjango set ts=2 sw=2 expandtab autoindent
+autocmd FileType html       set ts=2 sw=2 expandtab autoindent
 autocmd FileType rst        set ts=2 sw=2 expandtab autoindent
 autocmd FileType yaml       set ts=2 sw=2 expandtab autoindent
 autocmd FileType css        set ts=2 sw=2 expandtab autoindent
+autocmd FileType less       set ts=2 sw=2 expandtab autoindent
 
 " programming languages
-autocmd FileType javascript set ts=4 sw=4 expandtab autoindent number
+autocmd FileType javascript set ts=2 sw=2 expandtab autoindent number foldmethod=manual
 autocmd FileType php        set ts=4 sw=4 expandtab autoindent number
 autocmd FileType ruby       set ts=4 sw=4 expandtab autoindent number
 autocmd FileType python     set ts=4 sw=4 expandtab autoindent number
@@ -44,8 +48,8 @@ autocmd FileType python     set omnifunc=pythoncomplete#Complete
 autocmd BufRead *.json      set ts=2 sw=2
 
 " Automatically chmod +x Shell and Perl scripts
-autocmd BufWritePost    *.sh    !chmod +x %
-autocmd BufWritePost    *.pl    !chmod +x %
+"autocmd BufWritePost    *.sh    !chmod +x %
+"autocmd BufWritePost    *.pl    !chmod +x %
 
 " don't show help when F1 is pressed
 map <F1> <ESC>
@@ -71,6 +75,20 @@ map ,d <esc>oimport ipdb; ipdb.set_trace()<esc>:w<CR>
 map ,t :ConqueTermSplit bash<CR>
 map ,vt :ConqueTermVSplit bash<CR>
 map ,f :FF<CR>
+
+" Train myself not to use the arrow keys
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+noremap <PageUp> <Nop>
+noremap <PageDown> <Nop>
+inoremap <Up> <Nop>
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+inoremap <PageUp> <Nop>
+inoremap <PageDown> <Nop>
 
 " Quickly close preview windows
 map ,c :pclose<CR>
@@ -120,3 +138,8 @@ imap <C-@> <C-Space>
 
 " Save using sudo
 command! -bar -nargs=0 SudoW :silent exe "write !sudo tee % >/dev/null" |silent edit!
+
+" Gist settings
+let g:gist_detect_filetype=2
+let g:github_user="bendavis78"
+let g:github_token="c0a537557dc36a5e91bb100862c055ac"

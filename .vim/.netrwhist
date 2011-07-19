@@ -1,0 +1,9 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/home/ben/Projects/SavidWorks/capstone/web/templates/clinic/enrollment_form/includes'
+let g:netrw_dirhist_2='/home/ben/Projects/SavidWorks/capstone/web/templates/clinic/enrollment_form'
+let g:netrw_dirhist_3='/home/ben/Projects/Farstar/skinny-it-website/web/templates'
+let g:netrw_dirhist_4='/home/ben/Projects/Farstar/slurpee/slurpeerewards/admin'
+let g:netrw_dirhist_5='/home/ben/Projects/Farstar/farstar-gitweb/gitweb/management'
+let g:netrw_dirhist_6='/home/ben/Projects/SavidWorks/capstone/web/cms_plugins'
+let g:netrw_dirhist_7='/home/ben/Projects/SavidWorks/capstone/web/templates/clinic/enrollment_form'

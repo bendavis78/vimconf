@@ -15,14 +15,9 @@ if !exists("main_syntax")
   let main_syntax = 'html'
 endif
 
-if version < 600
-  so <sfile>:p:h/django.vim
-  so <sfile>:p:h/html.vim
-else
-  runtime! syntax/django.vim
-  runtime! syntax/html.vim
-  unlet b:current_syntax
-endif
+runtime! syntax/django.vim
+runtime! syntax/html.vim
+unlet b:current_syntax
 
 syn cluster djangoBlocks add=djangoTagBlock,djangoVarBlock,djangoComment,djangoComBlock
 
@@ -30,5 +25,9 @@ syn region djangoTagBlock start="{%" end="%}" contains=djangoStatement,djangoFil
 syn region djangoVarBlock start="{{" end="}}" contains=djangoFilter,djangoArgument,djangoVarError display containedin=ALLBUT,@djangoBlocks
 syn region djangoComment start="{%\s*comment\s*%}" end="{%\s*endcomment\s*%}" contains=djangoTodo containedin=ALLBUT,@djangoBlocks
 syn region djangoComBlock start="{#" end="#}" contains=djangoTodo containedin=ALLBUT,@djangoBlocks
+
+" Only hilight javascript when type="text/javascript" attr is used
+syn clear javaScript
+syn region javaScript start=+<script[^>]* type="text/javascript"[^>]*>+ keepend end=+</script>+me=s-1 contains=@htmlJavaScript,htmlCssStyleComment,htmlScriptTag,@htmlPreproc
 
 let b:current_syntax = "htmldjango"
