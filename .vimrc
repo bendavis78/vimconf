@@ -5,6 +5,7 @@
 :set nowrap
 :set hlsearch
 :set viminfo='20,\"1000
+:set nofoldenable
 
 " disable the annoying HTML link underlining
 :hi link htmlLink NONE
@@ -111,6 +112,9 @@ noremap <C-h> :wincmd h<CR>
 noremap <C-j> :wincmd j<CR>
 noremap <C-k> :wincmd k<CR>
 noremap <C-l> :wincmd l<CR>
+
+" clear hilighting
+noremap <F3> :nohl<CR>
 
 autocmd BufRead * syntax on
 autocmd VimEnter !togglecaps off
